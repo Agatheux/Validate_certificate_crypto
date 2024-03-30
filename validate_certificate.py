@@ -184,10 +184,8 @@ def valider_chaine_certificats(chemins_fichiers, format_fichier):
         else:
             print(Fore.RED + 'Le certificat n\'est pas  valide.')
 
-        # Appeler la fonction verifier_basic_constraints et afficher le résultat
-        verifier_basic_constraints(certificat)
 
-        # Vérification du statut de révocation
+        verifier_basic_constraints(certificat)
         verifier_statut_revocation(certificat)
 
 
@@ -200,8 +198,6 @@ def valider_chaine_certificats(chemins_fichiers, format_fichier):
 
     print(Fore.GREEN + "Validation de la chaîne de certificats terminée et réussie !")
 
-
-# Créer un analyseur d'arguments de ligne de commande
 
 def extraire_et_verifier_signature(certificat, cle_publique_parente):
     print(Fore.BLUE + "Extraction de l'algorithme de signature...")
@@ -272,7 +268,7 @@ def extraire_et_verifier_signature2(certificat, cle_publique_parente):
                 expected_hash = hashlib.sha256(certificat.tbs_certificate_bytes).digest()
             elif algorithme_hachage == 'SHA1':
                 expected_hash = hashlib.sha1(certificat.tbs_certificate_bytes).digest()
-            # Ajouter d'autres algorithmes de hachage si nécessaire
+
 
             # Comparer le hash extrait avec le hash attendu
             if decrypted_signature_bytes.endswith(expected_hash):
@@ -290,7 +286,6 @@ def extraire_et_verifier_signature2(certificat, cle_publique_parente):
                 'secp256r1': curves.NIST256p,
                 'secp384r1': curves.NIST384p,
                 'secp521r1': curves.NIST521p,
-                # Ajouter d'autres correspondances de courbes ici si nécessaire
             }
 
             # Trouver l'objet de courbe ECDSA correspondant
